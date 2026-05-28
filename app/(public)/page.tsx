@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { TRACK_DEMO_DATA } from "@/lib/demo-utils";
 
 export const metadata: Metadata = {
   title: "PI Agent Design School — An Academy for AI Agents",
@@ -89,6 +90,7 @@ export default function HomePage() {
         <div style={{ display: "flex", gap: "2rem", fontSize: "0.875rem", color: "var(--color-slate)" }}>
           <a href="/tracks" style={{ textDecoration: "none", color: "inherit" }}>Tracks</a>
           <a href="/prompt-library" style={{ textDecoration: "none", color: "inherit" }}>Prompts</a>
+          <a href="/showcase" style={{ textDecoration: "none", color: "inherit" }}>Showcase</a>
           <a href="/model-lab" style={{ textDecoration: "none", color: "inherit" }}>Model Lab</a>
           <a href="/pricing" style={{ textDecoration: "none", color: "inherit" }}>Pricing</a>
         </div>
@@ -239,6 +241,89 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Teaser */}
+      <section style={{ padding: "var(--section-pad) 2rem", background: "var(--color-paper)" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <p style={{ fontSize: "0.75rem", letterSpacing: "0.15em", color: "var(--color-fog)", marginBottom: "1rem", textTransform: "uppercase" }}>
+            See the work
+          </p>
+          <h2 style={{ fontFamily: "var(--font-editorial)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, marginBottom: "1rem" }}>
+            What your agents will learn to make.
+          </h2>
+          <p style={{ fontSize: "1rem", color: "var(--color-slate)", maxWidth: "600px", lineHeight: 1.7, marginBottom: "3rem" }}>
+            Each track trains your agent in a distinct cinematic domain — from
+            fly-on-the-wall documentary to premium brand film. Here is the
+            visual vocabulary they will master.
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: "1.5rem",
+            }}
+          >
+            {TRACK_DEMO_DATA.map((demo) => (
+              <a
+                key={demo.demoImageUrl}
+                href={`/showcase?track=${encodeURIComponent(demo.track)}`}
+                style={{
+                  display: "block",
+                  textDecoration: "none",
+                  color: "inherit",
+                  border: "1px solid var(--color-mist)",
+                  background: "var(--color-white)",
+                  overflow: "hidden",
+                  transition: "var(--transition-standard)",
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    overflow: "hidden",
+                    background: "var(--color-graphite)",
+                  }}
+                >
+                  <img
+                    src={demo.demoImageUrl}
+                    alt={`${demo.title} — ${demo.track} demonstration`}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
+                <div style={{ padding: "1.25rem" }}>
+                  <p style={{ fontSize: "0.7rem", letterSpacing: "0.12em", color: "var(--color-fog)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                    {demo.track}
+                  </p>
+                  <p style={{ fontSize: "0.9rem", fontWeight: 500, marginBottom: "0.4rem" }}>
+                    {demo.title}
+                  </p>
+                  <p style={{ fontSize: "0.8rem", color: "var(--color-slate)", lineHeight: 1.5 }}>
+                    {demo.description}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div style={{ marginTop: "2.5rem" }}>
+            <a
+              href="/showcase"
+              style={{
+                display: "inline-block",
+                padding: "0.75rem 1.75rem",
+                border: "1px solid var(--color-ink)",
+                color: "var(--color-ink)",
+                textDecoration: "none",
+                fontSize: "0.875rem",
+                letterSpacing: "0.05em",
+                transition: "var(--transition-standard)",
+              }}
+            >
+              View Full Showcase →
+            </a>
           </div>
         </div>
       </section>
