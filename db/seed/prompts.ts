@@ -4,7 +4,26 @@ function hash(body: string) {
   return crypto.createHash("sha256").update(body.trim()).digest("hex");
 }
 
-export const SEED_PROMPTS = [
+export interface SeedPrompt {
+  title: string;
+  body: string;
+  track: string;
+  shotType?: string;
+  cameraMotion: string[];
+  subject: string[];
+  mood: string[];
+  lighting: string[];
+  references?: string[];
+  mediaInputs?: string[];
+  modelCompatibility?: string[];
+  safetyFlags: string[];
+  evalCriteria: string[];
+  agentReadableSummary: string;
+  contentHash: string;
+  legacyId?: string;
+}
+
+export const SEED_PROMPTS: SeedPrompt[] = [
   {
     title: "Observational Documentary — Street Interview",
     body: "A fly-on-the-wall documentary scene. Subject: elderly street vendor in a busy market. Shot type: tight close-up on hands arranging produce, then slow pull-back to reveal the surrounding chaos. Camera: handheld with slight drift. Lighting: harsh midday sun, deep shadows between stalls. Mood: quiet dignity amid noise. No interview prompts visible. No staged moments. The camera observes, never directs.",

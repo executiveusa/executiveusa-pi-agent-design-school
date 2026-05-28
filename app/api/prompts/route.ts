@@ -38,7 +38,7 @@ export function GET(req: NextRequest) {
       shot_type: p.shotType,
       camera_motion: p.cameraMotion,
       mood: p.mood,
-      model_compatibility: p.modelCompatibility,
+      model_compatibility: p.modelCompatibility ?? [],
       agent_readable_summary: p.agentReadableSummary,
       content_hash: p.contentHash,
     })),

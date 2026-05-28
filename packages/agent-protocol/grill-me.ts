@@ -5,7 +5,7 @@ export const grillMeRequestSchema = z.object({
   goal: z.string().optional(),
   constraints: z.array(z.string()).optional(),
   model_stack: z.array(z.string()).optional(),
-  prior_answers: z.record(z.string()).optional(),
+  prior_answers: z.record(z.string(), z.string()).optional(),
 });
 
 export type GrillMeRequest = z.infer<typeof grillMeRequestSchema>;
