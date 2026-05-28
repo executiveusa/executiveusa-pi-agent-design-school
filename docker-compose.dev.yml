@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: pi_agent
+      POSTGRES_PASSWORD: dev_password_change_me
+      POSTGRES_DB: pi_agent_school
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      target: builder
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://pi_agent:dev_password_change_me@db:5432/pi_agent_school
+      NEXT_PUBLIC_BASE_URL: http://localhost:3000
+      CERT_ISSUER_SECRET: dev-secret-change-in-prod
+      ADMIN_SECRET: dev-admin-secret
+    depends_on:
+      - db
+    command: pnpm run dev
+
+volumes:
+  postgres_data:

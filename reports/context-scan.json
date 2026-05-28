@@ -1,0 +1,63 @@
+{
+  "repo": "executiveusa/executiveusa-pi-agent-design-school",
+  "scanned_at": "2026-05-28",
+  "package_manager": "pnpm",
+  "languages": ["TypeScript", "Rust"],
+  "frameworks": ["Next.js 15", "React 19", "Tailwind CSS v4", "Drizzle ORM", "Vitest", "Playwright"],
+  "existing_app_structure": {},
+  "existing_spec_kit_structure": {},
+  "existing_claude_structure": {},
+  "existing_design_system": {},
+  "existing_database": {},
+  "existing_tests": {},
+  "safe_commands": [
+    "pnpm install",
+    "pnpm run dev",
+    "pnpm run build",
+    "pnpm run test",
+    "pnpm run lint",
+    "pnpm run typecheck",
+    "pnpm run db:generate",
+    "pnpm run db:migrate",
+    "pnpm run ingest:dry-run"
+  ],
+  "forbidden_commands": [
+    "rm -rf",
+    "git reset --hard",
+    "git clean -fd",
+    "git add .",
+    "cat master.env",
+    "live API calls in tests"
+  ],
+  "recommended_spec_flow": [
+    "context-scan",
+    "constitution",
+    "specification",
+    "technical-plan",
+    "tasks",
+    "database-schema",
+    "packages",
+    "api-routes",
+    "ui-scaffold",
+    "tests",
+    "deployment-docs",
+    "final-report"
+  ],
+  "assumptions": [
+    "pnpm chosen as package manager for monorepo workspace support",
+    "Next.js 15 App Router for UI and BFF API surface",
+    "PostgreSQL + pgvector via Drizzle ORM",
+    "Vitest for unit and integration tests with mocked providers",
+    "Playwright for E2E smoke tests",
+    "Rust services planned but TypeScript interfaces scaffolded for MVP",
+    "Infisical for secrets management",
+    "Docker + Coolify for deployment",
+    "No existing content in-repo; legacy at seedance2prompt.com"
+  ],
+  "risks": [
+    "Legacy scrape target structure may change; fixture tests mitigate",
+    "pgvector extension must be enabled in Postgres migration",
+    "Certificate hashing requires consistent Infisical secret reference",
+    "CloneyFanz folder must remain planning-only; runtime guard required"
+  ]
+}

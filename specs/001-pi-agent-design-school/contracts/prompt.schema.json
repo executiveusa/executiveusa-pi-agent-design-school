@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piagentdesignschool.com/schemas/prompt.schema.json",
+  "title": "Prompt",
+  "description": "A structured prompt asset in PI Agent Design School",
+  "type": "object",
+  "required": ["id", "title", "body", "track", "content_hash"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "UUID"
+    },
+    "legacy_id": {
+      "type": "string",
+      "description": "Original ID from seedance2prompt.com"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Original URL on legacy site"
+    },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical URL on piagentdesignschool.com"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full prompt text"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "track": {
+      "type": "string",
+      "enum": [
+        "documentary",
+        "anime",
+        "ugc",
+        "music_video",
+        "product_video",
+        "brand_film",
+        "fashion",
+        "nonprofit",
+        "cinematic",
+        "general"
+      ]
+    },
+    "shot_type": {
+      "type": "string",
+      "description": "e.g. close-up, wide, establishing, POV"
+    },
+    "camera_motion": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. dolly-in, handheld, crane"
+    },
+    "subject": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "mood": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. cinematic, melancholic, tense"
+    },
+    "lighting": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. golden-hour, neon, practical"
+    },
+    "references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Film/style references"
+    },
+    "media_inputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required media inputs: image, video, audio"
+    },
+    "model_compatibility": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Models this prompt is tested with"
+    },
+    "safety_flags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Safety considerations"
+    },
+    "eval_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "What a rubric will check in this prompt type"
+    },
+    "agent_readable_summary": {
+      "type": "string",
+      "description": "One-paragraph machine-readable summary for agent consumption"
+    },
+    "poml_fragment": {
+      "type": "string",
+      "description": "POML fragment for embedding in course exports"
+    },
+    "content_hash": {
+      "type": "string",
+      "description": "SHA-256 of normalized body text"
+    },
+    "version": {
+      "type": "integer",
+      "default": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "published", "archived"],
+      "default": "draft"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

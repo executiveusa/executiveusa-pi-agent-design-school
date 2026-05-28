@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piagentdesignschool.com/schemas/a2a-manifest.schema.json",
+  "title": "A2A Manifest",
+  "description": "Agent-to-agent handshake and capability manifest for PI Agent Design School",
+  "type": "object",
+  "required": ["name", "version", "protocol", "endpoints", "capabilities", "tracks", "access_modes"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "const": "PI Agent Design School"
+    },
+    "version": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "string",
+      "const": "a2a-v1"
+    },
+    "description": {
+      "type": "string"
+    },
+    "base_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "endpoints": {
+      "type": "object",
+      "properties": {
+        "handshake": { "type": "string" },
+        "grill_me": { "type": "string" },
+        "enroll": { "type": "string" },
+        "courses": { "type": "string" },
+        "prompts": { "type": "string" },
+        "evals": { "type": "string" },
+        "certificates": { "type": "string" },
+        "model_scout": { "type": "string" },
+        "mcp": { "type": "string" }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "agent-enrollment",
+          "track-training",
+          "prompt-library",
+          "eval-scoring",
+          "certificate-issuance",
+          "certificate-verification",
+          "model-recommendations",
+          "grill-me-intake",
+          "poml-export",
+          "skill-pack-export"
+        ]
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "name"],
+        "properties": {
+          "slug": { "type": "string" },
+          "name": { "type": "string" },
+          "outcome": { "type": "string" }
+        }
+      }
+    },
+    "access_modes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["free", "invite", "paid", "studio", "enterprise"]
+      }
+    },
+    "authentication": {
+      "type": "object",
+      "properties": {
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["bearer", "invite-token", "api-key"]
+          }
+        },
+        "handshake_required": { "type": "boolean" }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "content_policy_url": { "type": "string", "format": "uri" },
+        "audit_logging": { "type": "boolean" },
+        "adult_content": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}
