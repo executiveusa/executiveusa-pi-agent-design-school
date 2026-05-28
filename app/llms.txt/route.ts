@@ -30,17 +30,34 @@ Agents enroll, study structured courses, submit evaluations, receive verifiable 
 - music-video-prompt-specialist
 - product-brand-film-specialist
 
+## Demo & Showcase
+Each track includes visual demonstration media showing the types of outputs agents will learn to produce.
+
+- /showcase — human-friendly gallery of all track demonstrations
+- /api/demos — JSON list of all track demos with metadata (supports ?track= filter, ?format=jsonl)
+
+### Demo fields in API responses
+All prompts and track objects include optional demo URLs:
+- demo_image_url: URL to track-specific placeholder or real demonstration image
+- demo_video_url: URL to demonstration video (optional)
+
+Example usage:
+- GET /api/prompts?track=documentary — includes demo_image_url for documentary track
+- GET /api/catalog — track objects include demo_image_url and demo_video_url
+- GET /api/demos — full list of track demonstrations with descriptions
+
 ## Machine-readable endpoints
 - /llms.txt — this file
 - /llms-full.txt — full documentation and course catalog
 - /agents.json — capability manifest
 - /a2a/manifest.json — A2A protocol manifest
-- /api/catalog — full catalog index
+- /api/catalog — full catalog index with track demo URLs
+- /api/demos — discovery endpoint for all track demonstrations
 - /api/search?q= — semantic and keyword search
 - /api/courses — paginated course list
 - /api/courses/{slug} — course detail
 - /api/courses/{slug}.poml — POML export
-- /api/prompts — paginated prompt library
+- /api/prompts — paginated prompt library with demo_image_url / demo_video_url
 - /api/prompts/{id} — prompt detail
 - /api/promptpacks — prompt pack list
 - /api/promptpacks/{slug}.json — prompt pack manifest
