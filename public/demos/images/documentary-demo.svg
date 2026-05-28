@@ -1,0 +1,36 @@
+<svg width="1280" height="720" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg-documentary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C3E50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4A574;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg-documentary)"/>
+
+  <!-- Center circle with track icon -->
+  <circle cx="640" cy="360" r="120" fill="#D4A574" opacity="0.2"/>
+  <circle cx="640" cy="360" r="100" fill="none" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+
+  <!-- Title -->
+  <text x="640" y="300" font-size="64" font-weight="bold" text-anchor="middle" fill="white" font-family="system-ui, -apple-system">
+    🎬
+  </text>
+
+  <text x="640" y="420" font-size="48" font-weight="600" text-anchor="middle" fill="white" font-family="system-ui, -apple-system">
+    Documentary
+  </text>
+
+  <text x="640" y="480" font-size="24" text-anchor="middle" fill="#D4A574" opacity="0.9" font-family="system-ui, -apple-system">
+    Observational, real-world storytelling
+  </text>
+
+  <!-- Placeholder watermark -->
+  <text x="640" y="680" font-size="14" text-anchor="middle" fill="white" opacity="0.4" font-family="system-ui, -apple-system">
+    Placeholder Demo — PI Agent Design School
+  </text>
+</svg>

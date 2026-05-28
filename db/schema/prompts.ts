@@ -50,6 +50,8 @@ export const prompts = pgTable("prompts", {
   evalCriteria: text("eval_criteria").array(),
   agentReadableSummary: text("agent_readable_summary"),
   pomlFragment: text("poml_fragment"),
+  demoImageUrl: text("demo_image_url"),
+  demoVideoUrl: text("demo_video_url"),
   contentHash: text("content_hash").notNull(),
   version: integer("version").notNull().default(1),
   status: promptStatusEnum("status").notNull().default("draft"),
