@@ -107,13 +107,13 @@ describe("Demo filtering", () => {
   it("filters by track (documentary)", () => {
     const filtered = DEMO_DATA.filter((d) => d.track === "documentary");
     expect(filtered.length).toBe(1);
-    expect(filtered[0].track_name).toBe("Documentary");
+    expect(filtered[0]!.track_name).toBe("Documentary");
   });
 
   it("filters by track (anime)", () => {
     const filtered = DEMO_DATA.filter((d) => d.track === "anime");
     expect(filtered.length).toBe(1);
-    expect(filtered[0].track_name).toBe("Anime Scene");
+    expect(filtered[0]!.track_name).toBe("Anime Scene");
   });
 
   it("returns no results for non-existent track", () => {

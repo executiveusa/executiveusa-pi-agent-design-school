@@ -27,7 +27,7 @@ export async function writePromptToDb(
 
   if (existing.length > 0) {
     return {
-      promptId: existing[0].id,
+      promptId: existing[0]!.id,
       isNew: false,
       contentHash: prompt.contentHash,
     };
@@ -59,7 +59,7 @@ export async function writePromptToDb(
     return null;
   }
 
-  const promptId = inserted[0].id;
+  const promptId = inserted[0]!.id;
 
   // Insert tags
   for (const tag of prompt.tags) {

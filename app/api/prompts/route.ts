@@ -55,8 +55,8 @@ export function GET(req: NextRequest) {
         model_compatibility: p.modelCompatibility ?? [],
         agent_readable_summary: p.agentReadableSummary,
         content_hash: p.contentHash,
-        demo_image_url: demoUrls.image,
-        demo_video_url: demoUrls.video,
+        demo_image_url: demoUrls?.image ?? null,
+        demo_video_url: demoUrls?.video ?? null,
       };
     }),
   });

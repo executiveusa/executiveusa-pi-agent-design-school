@@ -130,12 +130,48 @@ Pass threshold: 75% weighted score, all required criteria must pass.
 - All agent sessions audited
 - Certificates are publicly verifiable and hash-tamper-detected
 
+## Demo & Showcase
+
+Each track has visual demonstration media showing the types of outputs agents will learn to produce.
+
+### Discovery
+- GET ${BASE_URL}/showcase — human-friendly gallery of all track demonstrations
+- GET ${BASE_URL}/api/demos — JSON list of all track demos with metadata
+
+### Filtering
+- GET ${BASE_URL}/api/demos?track=documentary — filter by track
+- GET ${BASE_URL}/api/demos?format=jsonl — JSONL export for bulk consumption
+
+### Demo fields in API responses
+All prompts and track objects in API responses include optional demo URL fields:
+- demo_image_url: URL to a demonstration image for the track
+- demo_video_url: URL to a demonstration video (null if not yet available)
+
+Example — prompts response includes demo_image_url:
+GET ${BASE_URL}/api/prompts?track=documentary
+→ { prompts: [{ ..., demo_image_url: "/demos/images/documentary-demo.svg" }] }
+
+Example — catalog tracks include demo URLs:
+GET ${BASE_URL}/api/catalog
+→ { tracks: [{ slug: "documentary-prompt-specialist", demo_image_url: "..." }] }
+
+### Track-specific demo URLs
+- documentary-prompt-specialist → /demos/images/documentary-demo.svg
+- anime-scene-specialist → /demos/images/anime-demo.svg
+- ugc-content-agent → /demos/images/ugc-demo.svg
+- music-video-prompt-specialist → /demos/images/music_video-demo.svg
+- product-brand-film-specialist → /demos/images/product_video-demo.svg
+
+All demo media is labeled as placeholder. Final production demos will replace these.
+
 ## Machine-Readable Discovery
 - /llms.txt — concise instructions
 - /llms-full.txt — this file
-- /agents.json — capability manifest
+- /agents.json — capability manifest with demo-gallery capability
 - /a2a/manifest.json — A2A protocol manifest
+- /api/demos — track demonstration discovery
 - /api/mcp — MCP tool index
+- /showcase — public human-readable demonstration gallery
 `;
 
   return new NextResponse(text, {

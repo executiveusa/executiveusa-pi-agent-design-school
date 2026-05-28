@@ -61,14 +61,14 @@ function extractStructuredFields(
     /(?:shot|Shot|SHOT)\s*(?:type)?:\s*([^.]+)(?:[.;]|$)/i
   );
   if (shotMatch) {
-    fields.shotType = shotMatch[1].trim();
+    fields.shotType = shotMatch[1]!.trim();
   }
 
   const cameraMatch = body.match(
     /(?:camera|Camera|CAMERA)\s*(?:motion|movement)?:\s*([^.;]+)/i
   );
   if (cameraMatch) {
-    fields.cameraMotion = cameraMatch[1]
+    fields.cameraMotion = cameraMatch[1]!
       .split(/[,;]/)
       .map((s) => s.trim())
       .filter(Boolean);
@@ -76,7 +76,7 @@ function extractStructuredFields(
 
   const moodMatch = body.match(/(?:mood|Mood|MOOD):\s*([^.;]+)/i);
   if (moodMatch) {
-    fields.mood = moodMatch[1]
+    fields.mood = moodMatch[1]!
       .split(/[,;]/)
       .map((s) => s.trim())
       .filter(Boolean);
@@ -86,7 +86,7 @@ function extractStructuredFields(
     /(?:lighting|Lighting|LIGHTING):\s*([^.;]+)/i
   );
   if (lightingMatch) {
-    fields.lighting = lightingMatch[1]
+    fields.lighting = lightingMatch[1]!
       .split(/[,;]/)
       .map((s) => s.trim())
       .filter(Boolean);
@@ -96,7 +96,7 @@ function extractStructuredFields(
     /(?:subject|Subject|SUBJECT):\s*([^.;]+)/i
   );
   if (subjectMatch) {
-    fields.subject = subjectMatch[1]
+    fields.subject = subjectMatch[1]!
       .split(/[,;]/)
       .map((s) => s.trim())
       .filter(Boolean);
