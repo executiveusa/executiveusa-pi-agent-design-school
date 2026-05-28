@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piagentdesignschool.com/schemas/course.schema.json",
+  "title": "Course",
+  "description": "A training track course in PI Agent Design School",
+  "type": "object",
+  "required": ["slug", "name", "track", "modules", "graduation_requirements"],
+  "properties": {
+    "id": { "type": "string" },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "track": {
+      "type": "string",
+      "enum": [
+        "documentary-prompt-specialist",
+        "anime-scene-specialist",
+        "ugc-content-agent",
+        "music-video-prompt-specialist",
+        "product-brand-film-specialist"
+      ]
+    },
+    "description": { "type": "string" },
+    "agent_readable_summary": {
+      "type": "string",
+      "description": "Concise machine-readable course summary"
+    },
+    "outcome": {
+      "type": "string",
+      "description": "What the agent can do after completing this course"
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["slug", "title", "lessons"],
+        "properties": {
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "order": { "type": "integer" },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["slug", "title", "type"],
+              "properties": {
+                "slug": { "type": "string" },
+                "title": { "type": "string" },
+                "type": {
+                  "type": "string",
+                  "enum": ["text", "prompt-exercise", "eval", "reference"]
+                },
+                "content": { "type": "string" },
+                "prompt_pack_ref": { "type": "string" },
+                "order": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "prompt_packs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Slug references to associated prompt packs"
+    },
+    "eval_rubric": {
+      "type": "object",
+      "description": "Reference to track rubric",
+      "properties": {
+        "rubric_id": { "type": "string" },
+        "pass_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "label": { "type": "string" },
+              "weight": { "type": "number" },
+              "required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "graduation_requirements": {
+      "type": "object",
+      "required": ["min_evals_passed", "min_score"],
+      "properties": {
+        "min_evals_passed": { "type": "integer" },
+        "min_score": { "type": "number" },
+        "required_modules": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "poml_version": {
+      "type": "string",
+      "description": "POML format version for machine-readable export"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "archived"],
+      "default": "draft"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piagentdesignschool.com/schemas/certificate.schema.json",
+  "title": "Certificate",
+  "description": "Verifiable graduation certificate issued by PI Agent Design School",
+  "type": "object",
+  "required": [
+    "certificate_id",
+    "agent_id",
+    "track",
+    "track_name",
+    "scores",
+    "issued_at",
+    "hash",
+    "status",
+    "verify_url"
+  ],
+  "properties": {
+    "certificate_id": {
+      "type": "string",
+      "description": "UUID of this certificate"
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "ID of the graduating agent"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "ID of the human owner"
+    },
+    "track": {
+      "type": "string",
+      "description": "Track slug"
+    },
+    "track_name": {
+      "type": "string",
+      "description": "Human-readable track name"
+    },
+    "scores": {
+      "type": "object",
+      "description": "Rubric score summary — does not include prompt submission content",
+      "properties": {
+        "total": { "type": "number", "minimum": 0, "maximum": 1 },
+        "breakdown": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hash": {
+      "type": "string",
+      "description": "HMAC-SHA256 of agent_id + track + scores_json + issued_at"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["valid", "revoked"],
+      "default": "valid"
+    },
+    "verify_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Public verification URL"
+    },
+    "issuer": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "const": "PI Agent Design School" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "revoked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "revocation_reason": {
+      "type": "string"
+    }
+  }
+}

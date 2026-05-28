@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piagentdesignschool.com/schemas/eval.schema.json",
+  "title": "Eval",
+  "description": "Evaluation submission and result schema for PI Agent Design School",
+  "type": "object",
+  "definitions": {
+    "EvalSubmission": {
+      "type": "object",
+      "required": ["student_id", "track", "submission"],
+      "properties": {
+        "student_id": { "type": "string" },
+        "track": { "type": "string" },
+        "module_slug": { "type": "string" },
+        "submission": {
+          "type": "object",
+          "required": ["prompt_body"],
+          "properties": {
+            "prompt_body": { "type": "string", "minLength": 10 },
+            "shot_type": { "type": "string" },
+            "camera_motion": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "mood": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "lighting": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "subject": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "references": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "safety_acknowledgment": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "RubricScore": {
+      "type": "object",
+      "required": ["key", "label", "score", "max_score", "passed"],
+      "properties": {
+        "key": { "type": "string" },
+        "label": { "type": "string" },
+        "score": { "type": "number", "minimum": 0 },
+        "max_score": { "type": "number", "minimum": 0 },
+        "passed": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    },
+    "EvalResult": {
+      "type": "object",
+      "required": ["run_id", "status", "scores", "total_score", "pass_threshold"],
+      "properties": {
+        "run_id": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail"]
+        },
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/RubricScore"
+          }
+        },
+        "total_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "pass_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "missing_requirements": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "unsafe_behaviors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "remediation": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evaluated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "EvalRun": {
+      "type": "object",
+      "required": ["run_id", "student_id", "track", "status", "created_at"],
+      "properties": {
+        "run_id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "track": { "type": "string" },
+        "module_slug": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "scoring", "pass", "fail", "error"]
+        },
+        "created_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": "string", "format": "date-time" },
+        "result": { "$ref": "#/definitions/EvalResult" }
+      }
+    },
+    "Rubric": {
+      "type": "object",
+      "required": ["rubric_id", "track", "pass_threshold", "criteria"],
+      "properties": {
+        "rubric_id": { "type": "string" },
+        "track": { "type": "string" },
+        "version": { "type": "string" },
+        "pass_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["key", "label", "weight", "required"],
+            "properties": {
+              "key": { "type": "string" },
+              "label": { "type": "string" },
+              "description": { "type": "string" },
+              "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+              "required": { "type": "boolean" },
+              "check_type": {
+                "type": "string",
+                "enum": ["presence", "length", "enum", "pattern", "safety"]
+              },
+              "check_config": { "type": "object" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
