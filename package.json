@@ -19,30 +19,30 @@
     "ingest:run": "tsx packages/legacy-ingestor/cli.ts"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
+    "@neondatabase/serverless": "^1.1.0",
     "drizzle-orm": "^0.45.2",
-    "next": "^15.5.18",
+    "next": "^16.3.4",
     "postgres": "^3.4.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0",
-    "@tailwindcss/postcss": "^4.1.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitest/coverage-v8": "^4.1.8",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.5.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitest/coverage-v8": "^5.0.0",
     "cheerio": "^1.0.0",
     "drizzle-kit": "^0.31.0",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "15.3.0",
-    "p-limit": "^6.2.0",
+    "eslint": "^10.10.0",
+    "eslint-config-next": "16.3.4",
+    "p-limit": "^7.3.2",
     "postcss": "^8.5.0",
     "tailwindcss": "^4.1.0",
-    "tsx": "^4.19.0",
-    "typescript": "^5.8.0",
-    "vitest": "^4.1.8",
-    "zod": "^4.4.3"
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0",
+    "zod": "^4.6.1"
   }
 }
