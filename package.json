@@ -19,9 +19,9 @@
     "ingest:run": "tsx packages/legacy-ingestor/cli.ts"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0",
-    "drizzle-orm": "^0.45.2",
-    "next": "^16.3.5",
+    "@neondatabase/serverless": "^1.2.0",
+    "drizzle-orm": "^0.45.3",
+    "next": "^16.3.8",
     "postgres": "^3.4.5",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
@@ -29,14 +29,14 @@
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@vitest/coverage-v8": "^5.0.1",
+    "@vitest/coverage-v8": "^5.0.3",
     "cheerio": "^1.0.0",
-    "drizzle-kit": "^0.31.0",
-    "eslint": "^10.11.0",
-    "eslint-config-next": "16.3.5",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^10.12.0",
+    "eslint-config-next": "16.3.8",
     "p-limit": "^7.3.3",
     "postcss": "^8.5.28",
     "tailwindcss": "^4.1.0",
